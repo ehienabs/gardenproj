@@ -1,0 +1,26 @@
+name: Run tests
+
+on: [push, pull_request]
+
+jobs:
+  preview:
+    name: Deploy to Kubernetes
+    runs-on: gardendev/garden
+
+    environment:
+      GARDEN_LOG_LEVEL: debug # set the log level to your preference here
+      GARDEN_LOGGER_TYPE: basic # this is important, since the default logger doesn't play nice with CI :)
+
+
+    steps:    
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Create kubeconfig
+      run: |
+        mkdir ${HOME}/.kube
+        echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ${HOME}/.kube/config
+        cat ${HOME}/.kube/config
+    - name: Use context
+      run: kubectl config use-context draftdev  
+    - name: deploy project
+      run:  garden deploy --logger-type=basic --env=preview  

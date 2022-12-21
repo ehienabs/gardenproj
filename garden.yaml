@@ -1,0 +1,21 @@
+kind: Project
+name: kubernetes-module
+environments:
+  - name: dev
+  - name: preview
+  - name: staging
+providers:
+  - name: kubernetes
+    environments: ["dev"]
+    # Replace the below values as appropriate
+    context: draftdev
+    namespace: ${project.name}-testing-${var.userId}
+    buildMode: kaniko
+  - name: kubernetes
+    environments: ["preview"]
+    # Replace the below values as appropriate
+    context: draftdev
+    namespace: preview-${project.name}-testing-${var.userId}
+    buildMode: kaniko              
+variables:
+  userId: ${local.username}
