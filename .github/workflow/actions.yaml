@@ -1,4 +1,4 @@
-name: Run tests
+name: Deploy to Kubernetes
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 jobs:
   preview:
     name: Deploy to Kubernetes
-    runs-on: gardendev/garden
+    runs-on: ubuntu-latest
 
     environment:
       GARDEN_LOG_LEVEL: debug # set the log level to your preference here
