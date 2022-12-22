@@ -2,9 +2,9 @@ name: Run tests
 
 on:
   push:
-    branches: [ main ]
+    branches: [ * ]
   pull_request:
-    branches: [ main ]
+    branches: [ * ]
 
 jobs:
   preview:
@@ -28,3 +28,4 @@ jobs:
       run: kubectl config use-context draftdev  
     - name: deploy project
       run:  garden deploy --logger-type=basic --env=preview  
+ 
