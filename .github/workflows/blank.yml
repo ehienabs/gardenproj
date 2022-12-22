@@ -30,10 +30,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
     - name: Create kubeconfig
-      run: |
-        mkdir ${HOME}/.kube
-        echo ${{ secrets.KUBE_CONFIG }} | base64 -d > ${HOME}/.kube/config
-        cat ${HOME}/.kube/config
+      uses: actions-hub/kubectl@master
+      env:
+        KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
     - name: Use context
       run: kubectl config use-context draftdev  
     - name: deploy project 
