@@ -36,5 +36,7 @@ jobs:
       with:
         args: config use-context draftdev
     - name: deploy project 
-      run:  garden deploy --logger-type=basic --env=preview  
+      run: |
+        git config --global --add safe.directory /__w/gardenproj/gardenproj
+        garden deploy --logger-type=basic --env=preview  
  
