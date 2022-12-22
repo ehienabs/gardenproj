@@ -38,5 +38,6 @@ jobs:
     - name: deploy project 
       run: |
         git config --global --add safe.directory /__w/gardenproj/gardenproj
+        garden --env=preview plugins kubernetes cluster-init
         garden deploy --logger-type=basic --env=preview  
  
