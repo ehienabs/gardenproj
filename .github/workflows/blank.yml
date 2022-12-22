@@ -1,0 +1,41 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  preview:
+    name: Deploy to Kubernetes
+    runs-on: ubuntu-latest
+    container:
+      image: gardendev/garden:latest   
+
+    env:
+      GARDEN_LOG_LEVEL: debug # set the log level to your preference here
+      GARDEN_LOGGER_TYPE: basic # this is important, since the default logger doesn't play nice with CI :)
+
+
+    steps:    
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Create kubeconfig
+      run: |
+        mkdir ${HOME}/.kube
+        echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ${HOME}/.kube/config
+        cat ${HOME}/.kube/config
+    - name: Use context
+      run: kubectl config use-context draftdev  
+    - name: deploy project 
+      run:  garden deploy --logger-type=basic --env=preview  
+ 
