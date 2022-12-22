@@ -1,15 +1,17 @@
 name: Deploy to Kubernetes
 
-on:
+on:  
   push:
-    branches: [ * ]
   pull_request:
-    branches: [ * ]
+    branches:
+      - main
 
 jobs:
   preview:
     name: Deploy to Kubernetes
     runs-on: ubuntu-latest
+    container:
+      image: gardendev/garden:latest   
 
     environment:
       GARDEN_LOG_LEVEL: debug # set the log level to your preference here
@@ -26,6 +28,6 @@ jobs:
         cat ${HOME}/.kube/config
     - name: Use context
       run: kubectl config use-context draftdev  
-    - name: deploy project
+    - name: deploy project 
       run:  garden deploy --logger-type=basic --env=preview  
  
