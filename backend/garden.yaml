@@ -2,4 +2,4 @@ kind: Module
 type: kubernetes
 name: nginx
 description: civo deployment with kubernetes manifests in a file ((extracted from the stable/redis Helm chart))
-files: [nginxdep.yaml]
+files: [ngnix.yaml]
