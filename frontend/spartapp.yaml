@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: civodep
+  name: spartappdep
   labels:
-    app: civoapp
+    app: spartapp
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: civoapp
+      app: spartapp
   template:
     metadata:
       labels:
-        app: civoapp
+        app: spartapp
     spec:
       containers:
-      - name: civoapp
-        image: ehienabs/civoapp:v1
+      - name: spartapp
+        image: ehienabs/spartapp:v1
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -26,12 +26,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: civoapp-service
+  name: spartapp-service
   labels:
-    app: civoappsvc
+    app: spartappsvc
 spec:
   selector:
-    app: civoapp
+    app: spartapp
   ports:
     - name: http
       port: 80
