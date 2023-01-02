@@ -2,7 +2,7 @@ kind: Module
 type: kubernetes
 name: civo
 description: Redis deployment with kubernetes manifests in a file ((extracted from the stable/redis Helm chart))
-files: [civodep.yaml]
+files: [spartapp.yaml]
 tests:
   - name: unit
     args: [echo "This is a test for the frontend"]
