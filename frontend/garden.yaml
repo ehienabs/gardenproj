@@ -7,4 +7,4 @@ serviceResource:
   kind: Deployment
 tests:
   - name: unit
-    args: [alpine, run, echo "This is a test for the frontend"]
+    args: [alpine, run, test:unit]SS
