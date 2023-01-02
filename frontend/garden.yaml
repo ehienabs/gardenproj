@@ -1,6 +1,6 @@
 kind: Module
 type: kubernetes
-name: civo
+name: spartapp
 description: Redis deployment with kubernetes manifests in a file ((extracted from the stable/redis Helm chart))
 files: [spartapp.yaml]
 tests:
