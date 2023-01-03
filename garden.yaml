@@ -3,7 +3,6 @@ name: kubernetes-module
 environments:
   - name: dev
   - name: preview
-  - name: staging
 providers:
   - name: kubernetes
     environments: ["dev"]

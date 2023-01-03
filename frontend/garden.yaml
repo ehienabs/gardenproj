@@ -3,8 +3,3 @@ type: kubernetes
 name: spartapp
 description: Redis deployment with kubernetes manifests in a file ((extracted from the stable/redis Helm chart))
 files: [spartapp.yaml]
-serviceResource:
-  kind: Deployment
-tests:
-  - name: unit
-    args: [alpine, run, test:unit]
